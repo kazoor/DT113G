@@ -9,7 +9,7 @@ def parseMessage(inputString):
     # Split the string at every newline
     rows = inputString.split("\r\n")
 
-    # Manuall take out request type and protocol version.
+    # Manually take out request type and protocol version.
     protocol = rows[0].split(" ")
 
     # Make sure to remove unecessary parts like the request type "GET"
