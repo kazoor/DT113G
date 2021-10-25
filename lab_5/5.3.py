@@ -1,32 +1,31 @@
-# -----------------------------------------------------------
-# -----------------------------------------------------------
-# Lab 5: DNS client
-# General structure
-# -----------------------------------------------------------
-# -----------------------------------------------------------
 import sys
 import time
 from socket import *
 
 
-# -----------------------------------------
-# URL formatting function (YOUR CODE)
-# -----------------------------------------
 def formatNameFiled(url_in):
     byte_url = b''
+    headers = chr(23).encode('ascii') + chr(117).encode('ascii') + \
+        chr(1).encode('ascii') + chr(0).encode('ascii') + \
+        chr(0).encode('ascii') + chr(1).encode('ascii') + \
+        chr(0).encode('ascii') + chr(0).encode('ascii') + \
+        chr(0).encode('ascii') + chr(0).encode('ascii') + \
+        chr(0).encode('ascii') + chr(0).encode('ascii')
 
-    for i in url_in.split("."):
-        byte_url += chr(len(i)).encode('ascii') + \
-            i.encode('ascii')
-
-    return byte_url + chr(0).encode('ascii') \
+    queries = chr(0).encode('ascii') \
         + chr(0).encode('ascii') \
         + chr(1).encode('ascii') \
         + chr(0).encode('ascii') \
         + chr(1).encode('ascii')
 
+    for i in url_in.split("."):
+        byte_url += chr(len(i)).encode('ascii') + \
+            i.encode('ascii')
 
-DNS_server = ''
+    return headers + byte_url + queries
+
+
+DNS_server = '1.1.1.1'
 DNS_port = 53
 timeout = 5
 # -----------------------------------------
@@ -39,9 +38,7 @@ clientsocket.settimeout(timeout)
 DNS_port = int(DNS_port)
 
 
-url_to_query = 'www.oru.se'
-formatted_url = formatNameFiled(url_to_query)
-additional_info = b''
+url_to_query = 'www.aass.oru.se'
 # -----------------------------------------
 # Question assembly (YOUR CODE)
 # -----------------------------------------
