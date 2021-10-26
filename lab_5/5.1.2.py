@@ -1,15 +1,15 @@
 def formatNameFiled(url_in):
     byte_url = b''
+    queries = (chr(0) \
+        + chr(0) \
+        + chr(1) \
+        + chr(0) \
+        + chr(1)).encode('ascii')
 
     for i in url_in.split("."):
-        byte_url += chr(len(i)).encode('ascii') + \
-            i.encode('ascii')
+        byte_url += (chr(len(i)) + i).encode('ascii')
 
-    return byte_url + chr(0).encode('ascii') \
-        + chr(0).encode('ascii') \
-        + chr(1).encode('ascii') \
-        + chr(0).encode('ascii') \
-        + chr(1).encode('ascii')
+    return byte_url + queries
 
 
 print(formatNameFiled("bbc.co.uk"))

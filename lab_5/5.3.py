@@ -5,22 +5,21 @@ from socket import *
 
 def formatNameFiled(url_in):
     byte_url = b''
-    headers = chr(23).encode('ascii') + chr(117).encode('ascii') + \
-        chr(1).encode('ascii') + chr(0).encode('ascii') + \
-        chr(0).encode('ascii') + chr(1).encode('ascii') + \
-        chr(0).encode('ascii') + chr(0).encode('ascii') + \
-        chr(0).encode('ascii') + chr(0).encode('ascii') + \
-        chr(0).encode('ascii') + chr(0).encode('ascii')
+    headers = (chr(23) + chr(117) + \
+        chr(1) + chr(0) + \
+        chr(0) + chr(1) + \
+        chr(0) + chr(0) + \
+        chr(0) + chr(0) + \
+        chr(0) + chr(0)).encode('ascii')
 
-    queries = chr(0).encode('ascii') \
-        + chr(0).encode('ascii') \
-        + chr(1).encode('ascii') \
-        + chr(0).encode('ascii') \
-        + chr(1).encode('ascii')
+    queries = (chr(0) \
+        + chr(0) \
+        + chr(1) \
+        + chr(0) \
+        + chr(1)).encode('ascii')
 
     for i in url_in.split("."):
-        byte_url += chr(len(i)).encode('ascii') + \
-            i.encode('ascii')
+        byte_url += (chr(len(i)) + i).encode('ascii')
 
     return headers + byte_url + queries
 
@@ -38,7 +37,7 @@ clientsocket.settimeout(timeout)
 DNS_port = int(DNS_port)
 
 
-url_to_query = 'www.aass.oru.se'
+url_to_query = 'www.oru.se'
 # -----------------------------------------
 # Question assembly (YOUR CODE)
 # -----------------------------------------

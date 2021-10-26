@@ -2,8 +2,7 @@ def formatNameFiled(url_in):
     byte_url = b''
 
     for i in url_in.split("."):
-        byte_url += chr(len(i)).encode('ascii') + \
-            i.encode('ascii')
+        byte_url += (chr(len(i)) + i).encode('ascii')
 
     return byte_url + chr(0).encode('ascii')
 
